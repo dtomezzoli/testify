@@ -1,0 +1,38 @@
+ 
+<div>
+    <h2>Liste des questionnaires</h2>
+                   
+    <jhi-alert></jhi-alert>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><span>ID</span><span class="glyphicon"></span></th>
+                <th><span>Theme</span> <span class="glyphicon"></span></th>
+                <th><span>Niveau</span> <span class="glyphicon"></span></th>
+                <th><span>Durée</span> <span class="glyphicon"></span></th>
+                <th></th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            <tr ng-repeat="questionnaire in vm.questionnaires track by questionnaire.id">
+                <td>{{questionnaire.id}}</td>
+                <td>{{questionnaire.theme}}</td>
+                <td>{{questionnaire.niveau}}</td>
+                <td>{{questionnaire.duree}}</td>
+                <td>
+                    <div class="btn-group flex-btn-group-container">
+                        <button ng-click="vm.choisirQuestionnaire(questionnaire)" 
+                        	ng-show="true" class="btn btn-info btn-sm">Choisir</button>
+                   </div>
+              
+                </td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

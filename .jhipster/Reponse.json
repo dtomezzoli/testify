@@ -1,0 +1,31 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "question",
+      "otherEntityName": "question",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "contenu",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "score",
+      "fieldType": "Double"
+    }
+  ],
+  "changelogDate": "20160809140319",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "reponse"
+}

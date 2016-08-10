@@ -1,0 +1,39 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "one-to-many",
+      "relationshipName": "question",
+      "otherEntityName": "question",
+      "otherEntityRelationshipName": "questionnaire"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "theme",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "niveau",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "duree",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "changelogDate": "20160809140321",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "questionnaire"
+}

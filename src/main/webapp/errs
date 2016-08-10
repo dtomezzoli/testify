@@ -1,0 +1,44 @@
+./app/evaluationOld/questionnaireOld/questionnaireOld.controller.js:        //compteur pour chaque question
+./app/evaluationOld/questionnaireOld/questionnaireOld.html:                Vous n'avez pas répondu à la question !
+./app/evaluationOld/questionnaireOld/questionnaireOld.html:            <h3>Question {{quiz.activeQuestion+1}}: {{quiz.counter}}</h3>
+./app/layouts/navbar/navbar.html:                            <a ui-sref="question" ng-click="vm.collapseNavbar()">
+./app/layouts/navbar/navbar.html:                                <span >Question</span>
+./app/quiz/quiz.controller.js:            vm.activeQuestion = 0; // currently active question in the quiz
+./app/quiz/quiz.controller.js:             * If no argument is passed it will set the active question in the quiz
+./app/quiz/quiz.controller.js:             * to the next question that has yet to be answered. This allows the
+./app/quiz/quiz.controller.js:             * question.
+./app/quiz/quiz.controller.js:                     * question is found. Going back to the first question if the
+./app/quiz/quiz.controller.js:                     * last question is reached witout finding an unanswered question
+./app/quiz/quiz.controller.js:                        // check if last question is reach, if not increment. If it
+./app/quiz/quiz.controller.js:                        // if current active question has not been selected, break
+./app/quiz/quiz.controller.js:             * It will then check if the current question as been answered, if it
+./app/quiz/quiz.controller.js:             * If all the questions have not been answered or the current question
+./app/quiz/quiz.controller.js:             * increment the active question to the next unanswered question. If
+./app/quiz/quiz.controller.js:             * the current question is the only unanswered question then it will
+./app/quiz/quiz.controller.js:             * remain on that question
+./app/quiz/quiz.controller.js:                                 * if find a question that is not answered, set it to
+./app/quiz/quiz.controller.js:                                 * active question then return from this function
+./app/quiz/quiz.controller.js:                 * unanswered question using the setActiveQuestion method
+./app/quiz/quiz.controller.js:             * their selection for that question on the quizMetrics object. This
+./app/quiz/quiz.controller.js:             *          -Sets the active question back to 0 (for future use)
+./app/quiz/quiz.controller.js:             * setting active question on the results page
+./app/quiz/quiz.controller.js:             * Also all the variables on each question object is returned to
+./app/quiz/quiz.controller.js:                var data = DataService.quizQuestions[i]; //binding the current question to data to keep code clean
+./app/quiz/quiz.html:                        ng-repeat="question in quiz.dataService.quizQuestions"
+./app/quiz/quiz.html:                        ng-class="{'btn-info': question.selected !== null, 'btn-danger': question.selected === null}"
+./app/quiz/quiz.html:                                  ng-class="{'glyphicon-pencil': question.selected !== null, 'glyphicon-question-sign': question.selected === null}"></span>
+./app/quiz/quiz.html:                        <span class="glyphicon glyphicon-question-sign"></span>
+./app/quiz/quiz.html:        <h3>Question:</h3>
+./app/quiz/quiz.html:    </div><!-- question row -->
+./app/quiz/quiz.html:                        ng-repeat="question in results.dataService.quizQuestions"
+./app/quiz/quiz.html:                        ng-class="{'btn-success': question.correct, 'btn-danger': !question.correct}"
+./app/quiz/quiz.html:                                  ng-class="{'glyphicon-ok': question.correct, 'glyphicon-remove': !question.correct}"></span>
+./app/services/quiz/quiz.metrics.js:     *          -the questions themselves. What kind of question it is(text or
+./app/services/quiz/quiz.metrics.js:     *          -Whether the current question has been answered or is still
+./app/services/quiz/quiz.metrics.js:         * question. The total number of correct answers by the user is
+./app/services/quiz/quiz.service.js:     * pertaining to a single question. This includes:
+./app/services/quiz/quiz.service.js:     *                          - The type of question: image or text
+./app/services/quiz/quiz.service.js:     *                          - Text of the question (aka the actual question)
+./app/services/quiz/quiz.service.js:     *                          - Whether the user got the question correct or
+./bower_components/angular/angular.js: *   `localModel` and vice versa. Optional attributes should be marked as such with a question mark:
+./bower_components/angular/angular.js: *   | search        | The search params, minus the question mark                             |

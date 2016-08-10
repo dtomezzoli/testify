@@ -1,0 +1,46 @@
+entity Reponse {
+contenu String required,
+score Double 
+}
+
+entity Question {
+enonce String required
+}
+
+entity Questionnaire {
+theme String required,
+niveau String,
+duree Long required
+}
+
+entity Candidat {
+nom String required,
+prenom String required,
+email String required
+}
+
+entity Evaluation {
+debut ZonedDateTime,
+fin ZonedDateTime,
+score Double
+}
+
+
+relationship OneToMany {
+Question {reponse} to Reponse
+}
+
+relationship OneToMany {
+	Questionnaire {question} to Question
+}
+
+relationship OneToOne {
+	Evaluation{questionnaire} to Questionnaire
+}
+
+
+relationship ManyToOne {
+	Evaluation {candidat} to Candidat
+}
+
+

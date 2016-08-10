@@ -1,0 +1,33 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "one-to-many",
+      "relationshipName": "reponse",
+      "otherEntityName": "reponse",
+      "otherEntityRelationshipName": "question"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipName": "questionnaire",
+      "otherEntityName": "questionnaire",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "enonce",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "changelogDate": "20160809140320",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "question"
+}
