@@ -11,12 +11,23 @@
     	
     	console.log ("procevalController");
         var vm =this;
+       
+        vm.questionnaires = dataFactory.getQuestionnaires (); 
+        vm.currentPage = 0;
+        vm.pageSize = 3;
         
-        vm.questionnaires = dataFactory.getQuestionnaires ();
-
+          
+       
+        
+        var nombrePages = (vm.questionnaires.length % vm.pageSize == 0) ? Math.floor (vm.questionnaires.length / vm.pageSize)
+        		: Math.floor (vm.questionnaires.length / vm.pageSize) + 1; 
+ 
+        vm.nbPages = nombrePages;
+        
         vm.choisirQuestionnaire=function (questionnaire) {
         	console.log ("procevalController:choisirQuestionnaire:" + questionnaire.id);
         };
+        
         
     }
 
