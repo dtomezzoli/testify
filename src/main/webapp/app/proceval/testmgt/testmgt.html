@@ -1,0 +1,52 @@
+<!-- 
+<div>
+<pre>
+	{{vm.reponsesCourantes | json}} 
+</pre>
+</div>
+-->
+
+<div>
+ 	<div class="row">
+	<h4>	' ' {{vm.questionCourante.enonce}} </h4>
+    </div>
+
+ 
+    <div>
+	 <select size="6" multiple class="form-control" ng-model="vm.reponsesCourantes" ng-options="item.contenu for item in vm.propositionsCourantes track by item.id " required=""></select>
+	</div>
+	    
+	<br>
+    <div class="text-center">
+	<button ng-click="vm.validerChoix()">
+	Valider le choix courant
+    </button>  
+    </div>
+    
+    <hr>
+	<div class="text-center">
+	<button ng-disabled="vm.currentPage == 0" ng-click="vm.questionPrecedente()">
+	Question précédente
+	</button>
+     {{"Question numéro " + (vm.currentPage+1) + " / " + vm.questions.length}}    
+	<button ng-disabled="vm.currentPage >= vm.questions.length - 1" ng-click="vm.questionSuivante()">
+	Question suivante
+	</button>
+    </div>
+    
+    <br>
+    <div class="text-center">
+	<button ng-click="vm.finTest()">
+	Terminer test
+    </button>
+    
+    <button ng-click="vm.abandonnerTest()">
+	Abandonner test
+    </button>    
+    </div>
+   
+ 
+ 
+  
+
+    

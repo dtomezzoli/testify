@@ -12,7 +12,7 @@
                -->
                 <th><span>Thème</span> <span class="glyphicon"></span></th>
                 <th><span>Niveau</span> <span class="glyphicon"></span></th>
-                <th><span>Durée</span> <span class="glyphicon"></span></th>
+                <th><span>Durée (minutes)</span> <span class="glyphicon"></span></th>
                 <th></th>
             </tr>
             </thead>
@@ -41,14 +41,14 @@
      
     <div class="text-center">
      <button ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1">
-        Previous
+        Précédent
     </button>
   
   
-     {{vm.currentPage+1}}/{{(vm.questionnaires.length%vm.pageSize == 0)? vm.questionnaires.length%vm.pageSize : (vm.questionnaires.length - (vm.questionnaires.length%vm.pageSize))/ vm.pageSize + 1}} 
+     page {{vm.currentPage+1}}/{{(vm.questionnaires.length%vm.pageSize == 0)? vm.questionnaires.length%vm.pageSize : (vm.questionnaires.length - (vm.questionnaires.length%vm.pageSize)) / vm.pageSize + 1}} 
     
     <button ng-disabled="vm.currentPage >= vm.questionnaires.length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
-        Next
+        Suivant
     </button>
     </div>
     
