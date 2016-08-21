@@ -45,7 +45,7 @@
     </button>
   
   
-     page {{vm.currentPage+1}}/{{(vm.questionnaires.length%vm.pageSize == 0)? vm.questionnaires.length%vm.pageSize : (vm.questionnaires.length - (vm.questionnaires.length%vm.pageSize)) / vm.pageSize + 1}} 
+     page {{vm.currentPage+1}}/{{(vm.questionnaires.length%vm.pageSize == 0)? vm.questionnaires.length/vm.pageSize : (vm.questionnaires.length - (vm.questionnaires.length%vm.pageSize)) / vm.pageSize + 1}} 
     
     <button ng-disabled="vm.currentPage >= vm.questionnaires.length/vm.pageSize - 1" ng-click="vm.currentPage=vm.currentPage+1">
         Suivant
