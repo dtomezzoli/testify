@@ -85,3 +85,31 @@ To setup this project in Jenkins, use the following configuration:
 [Karma]: http://karma-runner.github.io/
 [Jasmine]: http://jasmine.github.io/2.0/introduction.html
 [Protractor]: https://angular.github.io/protractor/
+
+
+#######################################
+##########  Testify project  ##########
+#######################################
+
+## Add roles CANDIDAT and RECRUTEUR
+Add roles ROLE_CANDIDAT and ROLE_RECRUTEUR, add user "recruteur", and set user's roles:
+	testify/src/main/resources/config/liquibase/autorities.csv
+	src/main/resources/config/liquibase/users_authorities.csv
+	src/main/resources/config/liquibase/users_authorities.csv
+	
+Add roles in admin console:
+	testify/src/main/webapp/app/admin/user-management/user-management.controller.js
+	testify/src/main/webapp/app/admin/user-management/user-management-dialog.controller.js
+	
+Reinitialize database schema:
+	DROP DATABASE `testify` ;
+	CREATE DATABASE `testify` ;
+
+Regenerate liquibase:
+	mvn liquibase:clearCheckSums
+	mvn liquibase:update –e -X
+	
+Rebuild & start project
+	mvnw
+
+##

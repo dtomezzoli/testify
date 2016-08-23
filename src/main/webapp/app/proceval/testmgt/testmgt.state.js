@@ -15,7 +15,7 @@
             url: '/testmgt/:qid',
             parent: 'app',       
             data: {
-                authorities: []
+                authorities: ['ROLE_CANDIDAT']
             },
             views: {
                 'content@': {

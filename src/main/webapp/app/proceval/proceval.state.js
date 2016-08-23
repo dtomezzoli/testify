@@ -15,7 +15,7 @@
             url: '/proceval',
             parent: 'app',          
             data: {
-                authorities: []
+                authorities: ['ROLE_CANDIDAT']
             },
             views: {
                 'content@': {
