@@ -106,10 +106,9 @@ Reinitialize database schema:
 	CREATE DATABASE `testify` ;
 
 Regenerate liquibase:
+	mvn clean
 	mvn liquibase:clearCheckSums
+	mvn package
 	mvn liquibase:update –e -X
-	
-Rebuild & start project
-	mvnw
 
 ##
