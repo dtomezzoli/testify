@@ -5,9 +5,9 @@
         .module('testifyApp')
         .controller('EvaluationDialogController', EvaluationDialogController);
 
-    EvaluationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Evaluation', 'Questionnaire', 'Candidat'];
+    EvaluationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Evaluation', 'User', 'Questionnaire'];
 
-    function EvaluationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Evaluation, Questionnaire, Candidat) {
+    function EvaluationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Evaluation, User, Questionnaire) {
         var vm = this;
 
         vm.evaluation = entity;
@@ -15,16 +15,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.questionnaires = Questionnaire.query({filter: 'evaluation-is-null'});
-        $q.all([vm.evaluation.$promise, vm.questionnaires.$promise]).then(function() {
-            if (!vm.evaluation.questionnaire || !vm.evaluation.questionnaire.id) {
-                return $q.reject();
-            }
-            return Questionnaire.get({id : vm.evaluation.questionnaire.id}).$promise;
-        }).then(function(questionnaire) {
-            vm.questionnaires.push(questionnaire);
-        });
-        vm.candidats = Candidat.query();
+        vm.users = User.query();
+        vm.questionnaires = Questionnaire.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

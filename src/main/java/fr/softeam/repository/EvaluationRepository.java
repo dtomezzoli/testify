@@ -12,4 +12,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface EvaluationRepository extends JpaRepository<Evaluation,Long> {
 
+    @Query("select evaluation from Evaluation evaluation where evaluation.candidat.login = ?#{principal.username}")
+    List<Evaluation> findByCandidatIsCurrentUser();
+
 }

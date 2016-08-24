@@ -5,9 +5,9 @@
         .module('testifyApp')
         .controller('EvaluationDetailController', EvaluationDetailController);
 
-    EvaluationDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Evaluation', 'Questionnaire', 'Candidat'];
+    EvaluationDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Evaluation', 'User', 'Questionnaire'];
 
-    function EvaluationDetailController($scope, $rootScope, $stateParams, previousState, entity, Evaluation, Questionnaire, Candidat) {
+    function EvaluationDetailController($scope, $rootScope, $stateParams, previousState, entity, Evaluation, User, Questionnaire) {
         var vm = this;
 
         vm.evaluation = entity;

@@ -63,35 +63,51 @@
         		infoScore.question_id = vm.questions[i].id;
         		vm.scores.push (infoScore);
         }
-               
+        
+        // init reponses
+        vm.reponses = [];
+        for (var i=0; i < vm.questions.length; i++) {
+    		var infoReponse = {};
+    		infoReponse.question_id = vm.questions[i].id;
+    		infoReponse.reponses = [];
+    		vm.reponses.push (infoReponse);
+        }
+        
         if (vm.questions.length > 0 ){
         	vm.questionCourante = vm.questions [0];
         	vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
         }
-               
+        
+        
+        vm.restoreResponses = function (index) {
+    	  console.log ("testmgtController:restoreResponses:index=" + index);
+    	  // restituer les réponses précédentes
+    	  var qid = vm.questions [index].id;
+    	  if (index >= 0 && index < vm.reponses.length) {
+    		  vm.reponsesCourantes = vm.reponses[index].reponses;
+    	  }
+        }
+        
+        vm.saveResponses = function (index) {
+      	  console.log ("testmgtController:saveResponses:index=" + index);
+      	  // restituer les réponses précédentes
+      	  var qid = vm.questions [0].id;
+      	  if (index >= 0 && index < vm.reponses.length) {
+      		vm.reponses[index].reponses = vm.reponsesCourantes;
+      	  }
+         }
+       
+        
         vm.setQuestion = function (index) {
     	  console.log ("testmgtController:setQuestion:index=" + index);
     	  vm.questionCourante = vm.questions[index];
     	  vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
-    	  vm.reponsesCourantes = [];
+    	 
+    	  // restituer les réponses précédentes
+    	  //vm.reponsesCourantes = [];
+    	  vm.restoreResponses (index);
        }
-       
-        /*
-         * 
-         $scope.$watchCollection('vm.reponsesCourantes', function(newVal, oldVal) {
-            if(newVal !== oldVal) {
-            	console.log ("SELECTION");	
-            	if (Array.isArray(newVal) == false){
-            		vm.reponsesCourantesSave=oldVal;
-            	} else {
-            		console.log ("SELECTION definie");	
-            		vm.reponsesCourantesSave=newVal;
-            	}
-            }
-          });
-        */
-        
-        
+          
         vm.releverScore = function() {
             console.log ("testmgtController:releverScore");     
            	// prendre en compte le score max
@@ -124,11 +140,13 @@
         	// prendre en compte
         	if (Array.isArray(vm.reponsesCourantes) == false || vm.reponsesCourantes.length == 0) {
         		// pas de reponse à la question
+        		console.log ("validerChoix:Invalider le choix");
         		if (vm.scores [vm.currentPage].isValid == true) {
         			// annuler le choix courant
         			vm.scores [vm.currentPage].isValid = false;
         			vm.scores [vm.currentPage].current = vm.scoreUndefined;
         		} 
+        		vm.reponsesCourantes = [];
         	} else {
         		if (vm.scores [vm.currentPage].isValid == true) {
         			// maj score courant
@@ -138,14 +156,12 @@
         				scoreCourant += obj.score;
         			}
         			vm.scores [vm.currentPage].current = scoreCourant;
-       				/*
+       				
         			console.log ("validerChoix:UPDATE: index:" + vm.currentPage,
         					",isValid:" + vm.scores[vm.currentPage].isValid +
         					",current:" + vm.scores[vm.currentPage].current +
         					",max:" + vm.scores[vm.currentPage].max
            				);
-           			*/
-       				
        			} else {
        				
        				// init du score
@@ -157,21 +173,22 @@
            				scoreCourant += obj.score;
        				}
        				vm.scores [vm.currentPage].current = scoreCourant;
-       				/*
        				 console.log ("validerChoix:INIT:: index:" + vm.currentPage,
             				",isValid:" + vm.scores[vm.currentPage].isValid +
             				",current:" + vm.scores[vm.currentPage].current +
             				",max:" + vm.scores[vm.currentPage].max
             			);
-            		*/
-            		
        			}
        	}
+        vm.saveResponses (vm.currentPage);	
     }
     
         
        vm.questionSuivante = function() {
        	console.log ("testmgtController:questionSuivante");
+       	
+       	// change
+       	vm.validerChoix ();
        	
        	vm.releverScore ();
        	
@@ -183,6 +200,10 @@
        
        vm.questionPrecedente = function() {
        	console.log ("testmgtController:questionPrecedente");
+       	
+    	// change
+       	vm.validerChoix ();
+       	
        	
        	vm.releverScore ();
        	
@@ -199,6 +220,9 @@
        
         vm.finTest = function() {
         	console.log ("testmgtController:finTest");
+        
+        	// change
+           	vm.validerChoix ();
         	
         	// verifier le score
         	vm.releverScore ();
@@ -222,6 +246,49 @@
         		 $location.path('/testmgt/score/'+score+'/'+scoreMax+'/'+vm.duration);
         	 });
         };
+        
+        
+        Array.prototype.customIndexOf = function (obj, fromIndex) {
+    		console.log ("testmgtController:customIndexOf" )
+        if (fromIndex == null) {
+            fromIndex = 0;
+        } else if (fromIndex < 0) {
+            fromIndex = Math.max(0, this.length + fromIndex);
+        }
+        for (var i = fromIndex, j = this.length; i < j; i++) {
+            if (this[i].id == obj.id)
+                return i;
+        }
+        return -1;
+    	};
+    	
+        
+        vm.multipleSelections = [];
+        
+        // Using splice and push methods to make use of 
+        // the same "selections" object passed by reference to the 
+        // addOrRemove function as using "selections = []" 
+        // creates a new object within the scope of the 
+        // function which doesn't help in two way binding.
+        vm.addOrRemove = function (selectedItems, item, isMultiple) {
+           var itemIndex = selectedItems.customIndexOf(item)
+           var isPresent = (itemIndex > -1)
+           if (isMultiple) {
+              if (isPresent) {
+                 selectedItems.splice(itemIndex, 1)
+              } else {
+                 selectedItems.push(item)
+              }
+           } else {
+              if (isPresent) {
+                 selectedItems.splice(0, 1)
+              } else {
+                 selectedItems.splice(0, 1, item)
+              }
+           }
+        };
+            
+        
     }
 
 })();

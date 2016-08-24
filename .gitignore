@@ -133,3 +133,4 @@ Desktop.ini
 ######################
 .eslintcache
 /target/
+/.apt_generated/

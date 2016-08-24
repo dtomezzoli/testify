@@ -34,13 +34,13 @@ relationship OneToMany {
 	Questionnaire {question} to Question
 }
 
-relationship OneToOne {
+relationship ManyToOne {
 	Evaluation{questionnaire} to Questionnaire
 }
 
 
 relationship ManyToOne {
-	Evaluation {candidat} to Candidat
+	Evaluation {candidat} to User
 }
 
 

@@ -31,12 +31,11 @@ public class Evaluation implements Serializable {
     @Column(name = "score")
     private Double score;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Questionnaire questionnaire;
+    @ManyToOne
+    private User candidat;
 
     @ManyToOne
-    private Candidat candidat;
+    private Questionnaire questionnaire;
 
     public Long getId() {
         return id;
@@ -70,20 +69,20 @@ public class Evaluation implements Serializable {
         this.score = score;
     }
 
+    public User getCandidat() {
+        return candidat;
+    }
+
+    public void setCandidat(User user) {
+        this.candidat = user;
+    }
+
     public Questionnaire getQuestionnaire() {
         return questionnaire;
     }
 
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
-    }
-
-    public Candidat getCandidat() {
-        return candidat;
-    }
-
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
     }
 
     @Override
