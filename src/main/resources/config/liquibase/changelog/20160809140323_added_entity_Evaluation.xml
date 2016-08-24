@@ -32,10 +32,12 @@
             <column name="score" type="double">
                 <constraints nullable="true" />
             </column>
-                        <column name="questionnaire_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>
+            
             <column name="candidat_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="questionnaire_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

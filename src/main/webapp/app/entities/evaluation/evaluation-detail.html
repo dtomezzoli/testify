@@ -16,13 +16,13 @@
         <dd>
             <span>{{vm.evaluation.score}}</span>
         </dd>
+        <dt><span>Candidat</span></dt>
+        <dd>
+            {{vm.evaluation.candidat.login}}
+        </dd>
         <dt><span>Questionnaire</span></dt>
         <dd>
             <a ui-sref="questionnaire-detail({id:vm.evaluation.questionnaire.id})">{{vm.evaluation.questionnaire.id}}</a>
-        </dd>
-        <dt><span>Candidat</span></dt>
-        <dd>
-            <a ui-sref="candidat-detail({id:vm.evaluation.candidat.id})">{{vm.evaluation.candidat.id}}</a>
         </dd>
     </dl>
 

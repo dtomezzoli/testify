@@ -8,7 +8,6 @@
 
     <include file="classpath:config/liquibase/changelog/20160809140319_added_entity_Reponse.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140320_added_entity_Question.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160809140322_added_entity_Candidat.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140321_added_entity_Questionnaire.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140323_added_entity_Evaluation.xml" relativeToChangelogFile="false"/>
 

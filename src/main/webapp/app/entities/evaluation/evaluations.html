@@ -22,8 +22,8 @@
                     <th><span>Debut</span></th>
                     <th><span>Fin</span></th>
                     <th><span>Score</span></th>
-                    <th><span>Questionnaire</span></th>
                     <th><span>Candidat</span></th>
+                    <th><span>Questionnaire</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -34,10 +34,10 @@
                     <td>{{evaluation.fin | date:'medium'}}</td>
                     <td>{{evaluation.score}}</td>
                     <td>
-                        <a ui-sref="questionnaire-detail({id:evaluation.questionnaire.id})">{{evaluation.questionnaire.id}}</a>
+                        {{evaluation.candidat.login}}
                     </td>
                     <td>
-                        <a ui-sref="candidat-detail({id:evaluation.candidat.id})">{{evaluation.candidat.id}}</a>
+                        <a ui-sref="questionnaire-detail({id:evaluation.questionnaire.id})">{{evaluation.questionnaire.id}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
