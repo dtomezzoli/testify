@@ -20,6 +20,17 @@
                     return data;
                 }
             },
+            'getByQuestion': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/reponses/question/:id',
+                transformResponse: function (data) {
+                	if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
+            },
             'update': { method:'PUT' }
         });
     }
