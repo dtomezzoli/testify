@@ -33,9 +33,9 @@
         .module("proceval")
         .controller("testmgtController" , testmgtController);
     
-    testmgtController.$inject=['$scope','dataFactory','$timeout','$location','$stateParams'];
+    testmgtController.$inject=['$scope','dataFactory','$timeout','$location','$stateParams', 'Question', 'Reponse', 'Score'];
 
-    function testmgtController($scope,dataFactory,$timeout,$location,$stateParams){
+    function testmgtController($scope,dataFactory,$timeout,$location,$stateParams, Question, Reponse, Score){
     	
     	console.log ("testmgtController:" + $stateParams.qid);
         
@@ -52,7 +52,8 @@
         vm.score = 0;
         
         vm.questions = dataFactory.getQuestionsByQuestionnaire (vm.questionnaire_id); 
-        
+        //vm.questions = Question.getByQuestionnaire ({id : vm.questionnaire_id});
+   
         // init reponses
         vm.reponses = [];
         for (var i=0; i < vm.questions.length; i++) {
@@ -65,20 +66,13 @@
         if (vm.questions.length > 0 ){
         	vm.questionCourante = vm.questions [0];
         	vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
+        	//vm.propositionsCourantes = Reponse.getByQuestion({id: vm.questionCourante.id});
         }
        
         
-        vm.releverScore = function() {
-           console.log ("testmgtController:releverScore");
-           
-           // elaborer les paramètres
-           return dataFactory.processScore (vm.reponsesCourantes);
-        }
-        
         vm.restoreResponses = function (index) {
     	  console.log ("testmgtController:restoreResponses:index=" + index);
-    	  return;
-    	  
+    	  //return;
     	  
     	  var qid = vm.questions [index].id;
     	  if (index >= 0 && index < vm.reponses.length) {
@@ -88,7 +82,7 @@
         
         vm.saveResponses = function (index) {
       	  console.log ("testmgtController:saveResponses:index=" + index);
-      	  return;
+      	  //return;
       	  
       	  var qid = vm.questions [0].id;
       	  if (index >= 0 && index < vm.reponses.length) {
@@ -147,7 +141,7 @@
         	
            	vm.validerChoix ();
            	
-           	// construction des paramètres pour le service
+           	// construction des paramètres pour le score
             var lreponses = []; 
             for (var i=0; i < vm.questions.length; i++) {
         		var infoReponse = {};
@@ -164,16 +158,16 @@
         		}
             }
           
-            
-            vm.score = dataFactory.processScore ({id: vm.questionnaire_id}, lreponses);            
+            // calcul du score
+            vm.score = Score.post({id: vm.questionnaire_id}, lreponses);            
             //var eval = dataFactory.registerEvaluation (vm.questionnaire_id, vm.startTime, vm.finishTime, score);        	
 
         	var duration = Math.max(Math.floor((finishTime - vm.startTime)/60000),1);
         
         	$timeout(function() {
-        		 $location.path('/testmgt/score/'+score+'/-1/'+duration);
+        		 $location.path('/testmgt/score/'+vm.score+'/-1/'+duration);
         	 });
-        	
+       
         };
         
         

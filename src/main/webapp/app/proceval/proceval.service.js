@@ -51,10 +51,8 @@
                 {id:8, enonce:"langages de programmation",questionnaire_id:3},
                 {id:9, enonce:"langages objet",questionnaire_id:3}
             ];
-        else
-        dataFactory.allData.questions = Question.query();
-        
-        
+        else // for test only
+        	dataFactory.allData.questions = Question.query();
         
         //reponses
         var simuReponse = false;
@@ -81,12 +79,6 @@
         else
         dataFactory.allData.reponses = Reponse.query();  
         
-        
-        dataFactory.processScore=function(questionnaireId, lchoix){
-        	console.log("dataFactory.processScore:" + lchoix.length);
-        	  
-        	return Score.post (questionnaireId,lchoix);
-        }
         
      
          dataFactory.registerEvaluation=function(questionnaire_id, startTime, finishTime, score){	  
@@ -176,8 +168,9 @@
         	return lreponses;	
         }	
         
+        	 
         dataFactory.getQuestionsByQuestionnaire=function(id){
-        	console.log("dataFactory.getQuestionsByQuestionnaire:" + id);
+        	console.log("dataFactory.getQuestionsByQuestionnaireLocale:" + id);
         	
         	var lquestions = [];
         	for(var i=0;i<dataFactory.allData.questions.length;i++) {
