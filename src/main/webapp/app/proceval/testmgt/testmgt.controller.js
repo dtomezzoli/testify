@@ -42,27 +42,16 @@
     	var vm =this;
         
         vm.startTime = new Date().getTime(); // ms depuis 1970
-        vm.duration = 0;
+        vm.questionnaire_id = $stateParams.qid;
         
         vm.currentPage = 0;
         vm.questionCourante = {};
         vm.propositionsCourantes = [];
         vm.reponsesCourantes = [];
-        vm.scoreUndefined = -99999;  // constantes
         
-        vm.questions = dataFactory.getQuestionsByQuestionnaire ($stateParams.qid); 
+        vm.score = 0;
         
-        // init des scores
-        vm.scores = [];
-        for (var i=0; i < vm.questions.length; i++) {
-        		var infoScore = {};
-        		
-        		infoScore.isValid = false;
-        		infoScore.current = vm.scoreUndefined;
-        		infoScore.max = vm.scoreUndefined;
-        		infoScore.question_id = vm.questions[i].id;
-        		vm.scores.push (infoScore);
-        }
+        vm.questions = dataFactory.getQuestionsByQuestionnaire (vm.questionnaire_id); 
         
         // init reponses
         vm.reponses = [];
@@ -77,11 +66,20 @@
         	vm.questionCourante = vm.questions [0];
         	vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
         }
+       
         
+        vm.releverScore = function() {
+           console.log ("testmgtController:releverScore");
+           
+           // elaborer les paramètres
+           return dataFactory.processScore (vm.reponsesCourantes);
+        }
         
         vm.restoreResponses = function (index) {
     	  console.log ("testmgtController:restoreResponses:index=" + index);
-    	  // restituer les réponses précédentes
+    	  return;
+    	  
+    	  
     	  var qid = vm.questions [index].id;
     	  if (index >= 0 && index < vm.reponses.length) {
     		  vm.reponsesCourantes = vm.reponses[index].reponses;
@@ -90,7 +88,8 @@
         
         vm.saveResponses = function (index) {
       	  console.log ("testmgtController:saveResponses:index=" + index);
-      	  // restituer les réponses précédentes
+      	  return;
+      	  
       	  var qid = vm.questions [0].id;
       	  if (index >= 0 && index < vm.reponses.length) {
       		vm.reponses[index].reponses = vm.reponsesCourantes;
@@ -103,112 +102,33 @@
     	  vm.questionCourante = vm.questions[index];
     	  vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
     	 
-    	  // restituer les réponses précédentes
     	  //vm.reponsesCourantes = [];
     	  vm.restoreResponses (index);
        }
           
-        vm.releverScore = function() {
-            console.log ("testmgtController:releverScore");     
-           	// prendre en compte le score max
-           	if (vm.propositionsCourantes.length > 0) {
-           		// renseigner le score de la question
-           		if (vm.scores [vm.currentPage].max == vm.scoreUndefined) {
-           			// ras	
-           			var scoreMax = 0;
-           			for (var i=0; i < vm.propositionsCourantes.length;i++) {
-           				var obj = vm.propositionsCourantes[i];
-           				if (obj.score > 0)
-           					scoreMax += obj.score;
-           				}
-           			vm.scores [vm.currentPage].max = scoreMax;
-           			/*
-           			console.log ("releverScore: INITMAX:INIT :" + vm.currentPage,
-                			",isValid:" + vm.scores[vm.currentPage].isValid +
-                			",current:" + vm.scores[vm.currentPage].current +
-                			",max:" + vm.scores[vm.currentPage].max
-                		);
-                	*/
-           			}
-           	}
-        }
-        
-       
-        
         vm.validerChoix = function() {
         	console.log ("testmgtController:validerChoix");     
-        	// prendre en compte
         	if (Array.isArray(vm.reponsesCourantes) == false || vm.reponsesCourantes.length == 0) {
-        		// pas de reponse à la question
-        		console.log ("validerChoix:Invalider le choix");
-        		if (vm.scores [vm.currentPage].isValid == true) {
-        			// annuler le choix courant
-        			vm.scores [vm.currentPage].isValid = false;
-        			vm.scores [vm.currentPage].current = vm.scoreUndefined;
-        		} 
         		vm.reponsesCourantes = [];
-        	} else {
-        		if (vm.scores [vm.currentPage].isValid == true) {
-        			// maj score courant
-        			var scoreCourant = 0;
-        			for (var i=0; i < vm.reponsesCourantes.length;i++) {
-        				var obj = vm.reponsesCourantes[i];
-        				scoreCourant += obj.score;
-        			}
-        			vm.scores [vm.currentPage].current = scoreCourant;
-       				
-        			console.log ("validerChoix:UPDATE: index:" + vm.currentPage,
-        					",isValid:" + vm.scores[vm.currentPage].isValid +
-        					",current:" + vm.scores[vm.currentPage].current +
-        					",max:" + vm.scores[vm.currentPage].max
-           				);
-       			} else {
-       				
-       				// init du score
-       				vm.scores [vm.currentPage].isValid = true
-       				
-       				var scoreCourant = 0;
-       				for (var i=0; i < vm.reponsesCourantes.length;i++) {
-       					var obj = vm.reponsesCourantes[i];
-           				scoreCourant += obj.score;
-       				}
-       				vm.scores [vm.currentPage].current = scoreCourant;
-       				 console.log ("validerChoix:INIT:: index:" + vm.currentPage,
-            				",isValid:" + vm.scores[vm.currentPage].isValid +
-            				",current:" + vm.scores[vm.currentPage].current +
-            				",max:" + vm.scores[vm.currentPage].max
-            			);
-       			}
-       	}
-        vm.saveResponses (vm.currentPage);	
-    }
+        	}
+        	vm.saveResponses (vm.currentPage);	
+        }
     
         
        vm.questionSuivante = function() {
        	console.log ("testmgtController:questionSuivante");
        	
-       	// change
        	vm.validerChoix ();
-       	
-       	vm.releverScore ();
-       	
-       	vm.currentPage=vm.currentPage+1;
        
+       	vm.currentPage=vm.currentPage+1;
        	vm.setQuestion (vm.currentPage);
        };
         
        
        vm.questionPrecedente = function() {
-       	console.log ("testmgtController:questionPrecedente");
-       	
-    	// change
-       	vm.validerChoix ();
-       	
-       	
-       	vm.releverScore ();
-       	
+    	console.log ("testmgtController:questionPrecedente");
+    	vm.validerChoix ();
        	vm.currentPage=vm.currentPage-1;
-       	
     	vm.setQuestion (vm.currentPage);
        };
        
@@ -218,58 +138,60 @@
       	 });
        }
        
+       
         vm.finTest = function() {
         	console.log ("testmgtController:finTest");
         
-        	// change
+        	var finishTime = new Date().getTime();
+        	
+        	
            	vm.validerChoix ();
-        	
-        	// verifier le score
-        	vm.releverScore ();
-        	
-        	// calculer le score
-        	var score = 0;
-        	var scoreMax = 0;
-        	for (var i=0; i < vm.scores.length; i++) {
-        		var infoScore = vm.scores[i];
-        		scoreMax += infoScore.max;
-         		if ( infoScore.isValid == true ) {
-         			score += infoScore.current;
-         		} else {
-         			console.log ("testmgtController:Max Undefined " + i);
-         		}
-        	 }
-        	var currentTime = new Date().getTime();
-        	vm.duration = Math.floor((currentTime - vm.startTime)/60000);
-     
+           	
+           	// construction des paramètres pour le service
+            var lreponses = []; 
+            for (var i=0; i < vm.questions.length; i++) {
+        		var infoReponse = {};
+        		infoReponse.questionId = vm.questions[i].id;
+        		infoReponse.reponses = [];
+        		lreponses.push (infoReponse);
+            }
+            for (var i=0; i < vm.reponsesCourantes.length; i++) {
+        		var question_id = vm.reponsesCourantes[i].question_id;
+        		for (var j=0; j < lreponses.length;j++) {
+        			if (lreponses[j].questionId == question_id) {
+        				lreponses[j].reponses.push (vm.reponsesCourantes[i].id);
+        			}
+        		}
+            }
+          
+            
+            vm.score = dataFactory.processScore ({id: vm.questionnaire_id}, lreponses);            
+            //var eval = dataFactory.registerEvaluation (vm.questionnaire_id, vm.startTime, vm.finishTime, score);        	
+
+        	var duration = Math.max(Math.floor((finishTime - vm.startTime)/60000),1);
+        
         	$timeout(function() {
-        		 $location.path('/testmgt/score/'+score+'/'+scoreMax+'/'+vm.duration);
+        		 $location.path('/testmgt/score/'+score+'/-1/'+duration);
         	 });
+        	
         };
         
         
         Array.prototype.customIndexOf = function (obj, fromIndex) {
     		console.log ("testmgtController:customIndexOf" )
-        if (fromIndex == null) {
-            fromIndex = 0;
-        } else if (fromIndex < 0) {
-            fromIndex = Math.max(0, this.length + fromIndex);
-        }
-        for (var i = fromIndex, j = this.length; i < j; i++) {
-            if (this[i].id == obj.id)
-                return i;
-        }
-        return -1;
+    		if (fromIndex == null) {
+    			fromIndex = 0;
+    		} else if (fromIndex < 0) {
+    			fromIndex = Math.max(0, this.length + fromIndex);
+    		}
+    		for (var i = fromIndex, j = this.length; i < j; i++) {
+    			if (this[i].id == obj.id)
+    				return i;
+    		}
+    		return -1;
     	};
     	
-        
         vm.multipleSelections = [];
-        
-        // Using splice and push methods to make use of 
-        // the same "selections" object passed by reference to the 
-        // addOrRemove function as using "selections = []" 
-        // creates a new object within the scope of the 
-        // function which doesn't help in two way binding.
         vm.addOrRemove = function (selectedItems, item, isMultiple) {
            var itemIndex = selectedItems.customIndexOf(item)
            var isPresent = (itemIndex > -1)
@@ -287,7 +209,8 @@
               }
            }
         };
-            
+        
+        
         
     }
 

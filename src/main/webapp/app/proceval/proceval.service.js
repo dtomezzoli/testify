@@ -5,11 +5,11 @@
         .module("proceval")
         .factory("dataFactory", dataFactory);
 
-    dataFactory.$inject = ['Questionnaire', 'Question', 'Reponse'];
+    dataFactory.$inject = ['Questionnaire', 'Question', 'Reponse', 'Score', 'Evaluation'];
     
     
     
-    function dataFactory(Questionnaire, Question, Reponse){
+    function dataFactory(Questionnaire, Question, Reponse, Score, Evaluation){
 
         var dataFactory={
             allData:[]
@@ -82,8 +82,26 @@
         dataFactory.allData.reponses = Reponse.query();  
         
         
+        dataFactory.processScore=function(questionnaireId, lchoix){
+        	console.log("dataFactory.processScore:" + lchoix.length);
+        	  
+        	return Score.post (questionnaireId,lchoix);
+        }
+        
+     
+         dataFactory.registerEvaluation=function(questionnaire_id, startTime, finishTime, score){	  
+        	  console.log("dataFactory.registerEvaluation:" +
+        			"questionnaire_id:" + questionnaire_id +
+        			",startTime: " + startTime +
+        			",finishTime:" + finishTime +
+        			",score:" + score);
+        	
+        	var leval = {}; 	
+        	return leval;
+        }
        
         
+      
         
         dataFactory.getQuestionnaires=function(){
         	console.log("dataFactory.getQuestionnaires");
