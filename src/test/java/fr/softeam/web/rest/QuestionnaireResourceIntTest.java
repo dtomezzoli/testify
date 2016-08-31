@@ -43,8 +43,8 @@ public class QuestionnaireResourceIntTest {
 
     private static final String DEFAULT_THEME = "AAAAA";
     private static final String UPDATED_THEME = "BBBBB";
-    private static final String DEFAULT_NIVEAU = "AAAAA";
-    private static final String UPDATED_NIVEAU = "BBBBB";
+    private static final String DEFAULT_CATEGORIE = "AAAAA";
+    private static final String UPDATED_CATEGORIE = "BBBBB";
 
     private static final Long DEFAULT_DUREE = 1L;
     private static final Long UPDATED_DUREE = 2L;
@@ -76,7 +76,7 @@ public class QuestionnaireResourceIntTest {
     public void initTest() {
         questionnaire = new Questionnaire();
         questionnaire.setTheme(DEFAULT_THEME);
-        questionnaire.setNiveau(DEFAULT_NIVEAU);
+        questionnaire.setCategorie(DEFAULT_CATEGORIE);
         questionnaire.setDuree(DEFAULT_DUREE);
     }
 
@@ -97,7 +97,7 @@ public class QuestionnaireResourceIntTest {
         assertThat(questionnaires).hasSize(databaseSizeBeforeCreate + 1);
         Questionnaire testQuestionnaire = questionnaires.get(questionnaires.size() - 1);
         assertThat(testQuestionnaire.getTheme()).isEqualTo(DEFAULT_THEME);
-        assertThat(testQuestionnaire.getNiveau()).isEqualTo(DEFAULT_NIVEAU);
+        assertThat(testQuestionnaire.getCategorie()).isEqualTo(DEFAULT_CATEGORIE);
         assertThat(testQuestionnaire.getDuree()).isEqualTo(DEFAULT_DUREE);
     }
 
@@ -149,7 +149,7 @@ public class QuestionnaireResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(questionnaire.getId().intValue())))
                 .andExpect(jsonPath("$.[*].theme").value(hasItem(DEFAULT_THEME.toString())))
-                .andExpect(jsonPath("$.[*].niveau").value(hasItem(DEFAULT_NIVEAU.toString())))
+                .andExpect(jsonPath("$.[*].categorie").value(hasItem(DEFAULT_CATEGORIE.toString())))
                 .andExpect(jsonPath("$.[*].duree").value(hasItem(DEFAULT_DUREE.intValue())));
     }
 
@@ -165,7 +165,7 @@ public class QuestionnaireResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(questionnaire.getId().intValue()))
             .andExpect(jsonPath("$.theme").value(DEFAULT_THEME.toString()))
-            .andExpect(jsonPath("$.niveau").value(DEFAULT_NIVEAU.toString()))
+            .andExpect(jsonPath("$.categorie").value(DEFAULT_CATEGORIE.toString()))
             .andExpect(jsonPath("$.duree").value(DEFAULT_DUREE.intValue()));
     }
 
@@ -188,7 +188,7 @@ public class QuestionnaireResourceIntTest {
         Questionnaire updatedQuestionnaire = new Questionnaire();
         updatedQuestionnaire.setId(questionnaire.getId());
         updatedQuestionnaire.setTheme(UPDATED_THEME);
-        updatedQuestionnaire.setNiveau(UPDATED_NIVEAU);
+        updatedQuestionnaire.setCategorie(UPDATED_CATEGORIE);
         updatedQuestionnaire.setDuree(UPDATED_DUREE);
 
         restQuestionnaireMockMvc.perform(put("/api/questionnaires")
@@ -201,7 +201,7 @@ public class QuestionnaireResourceIntTest {
         assertThat(questionnaires).hasSize(databaseSizeBeforeUpdate);
         Questionnaire testQuestionnaire = questionnaires.get(questionnaires.size() - 1);
         assertThat(testQuestionnaire.getTheme()).isEqualTo(UPDATED_THEME);
-        assertThat(testQuestionnaire.getNiveau()).isEqualTo(UPDATED_NIVEAU);
+        assertThat(testQuestionnaire.getCategorie()).isEqualTo(UPDATED_CATEGORIE);
         assertThat(testQuestionnaire.getDuree()).isEqualTo(UPDATED_DUREE);
     }
 

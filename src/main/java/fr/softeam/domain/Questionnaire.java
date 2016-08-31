@@ -29,8 +29,8 @@ public class Questionnaire implements Serializable {
     @Column(name = "theme", nullable = false)
     private String theme;
 
-    @Column(name = "niveau")
-    private String niveau;
+    @Column(name = "categorie")
+    private String categorie;
 
     @NotNull
     @Column(name = "duree", nullable = false)
@@ -57,12 +57,12 @@ public class Questionnaire implements Serializable {
         this.theme = theme;
     }
 
-    public String getNiveau() {
-        return niveau;
+    public String getCategorie() {
+        return categorie;
     }
 
-    public void setNiveau(String niveau) {
-        this.niveau = niveau;
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public Long getDuree() {
@@ -106,7 +106,7 @@ public class Questionnaire implements Serializable {
         return "Questionnaire{" +
             "id=" + id +
             ", theme='" + theme + "'" +
-            ", niveau='" + niveau + "'" +
+            ", categorie='" + categorie + "'" +
             ", duree='" + duree + "'" +
             '}';
     }

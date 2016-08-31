@@ -51,24 +51,29 @@
         
         vm.score = 0;
         
-        vm.questions = dataFactory.getQuestionsByQuestionnaire (vm.questionnaire_id); 
-        //vm.questions = Question.getByQuestionnaire ({id : vm.questionnaire_id});
-   
-        // init reponses
-        vm.reponses = [];
-        for (var i=0; i < vm.questions.length; i++) {
-    		var infoReponse = {};
-    		infoReponse.question_id = vm.questions[i].id;
-    		infoReponse.reponses = [];
-    		vm.reponses.push (infoReponse);
-        }
+        //vm.questions = dataFactory.getQuestionsByQuestionnaire (vm.questionnaire_id); 
+        vm.questions = Question.getByQuestionnaire ({id : vm.questionnaire_id});
         
-        if (vm.questions.length > 0 ){
-        	vm.questionCourante = vm.questions [0];
-        	vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
-        	//vm.propositionsCourantes = Reponse.getByQuestion({id: vm.questionCourante.id});
-        }
-       
+        vm.questions.then = function(){
+        	//console.log(234);
+        	
+            // init reponses
+            vm.reponses = [];
+            for (var i=0; i < vm.questions.length; i++) {
+        		var infoReponse = {};
+        		infoReponse.question_id = vm.questions[i].id;
+        		infoReponse.reponses = [];
+        		vm.reponses.push (infoReponse);
+            }
+            
+            if (vm.questions.length > 0 ){
+            	vm.questionCourante = vm.questions [0];
+            	//vm.propositionsCourantes = dataFactory.getReponsesByQuestion (vm.questionCourante.id);
+            	vm.propositionsCourantes = Reponse.getByQuestion({id: vm.questionCourante.id});
+            }
+    	};
+        
+        
         
         vm.restoreResponses = function (index) {
     	  console.log ("testmgtController:restoreResponses:index=" + index);
@@ -78,6 +83,8 @@
     	  if (index >= 0 && index < vm.reponses.length) {
     		  vm.reponsesCourantes = vm.reponses[index].reponses;
     	  }
+    	  //console.log("vm.reponses");
+    	  //console.log(vm.reponses);
         }
         
         vm.saveResponses = function (index) {
