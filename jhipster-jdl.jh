@@ -9,15 +9,10 @@ enonce String required
 
 entity Questionnaire {
 theme String required,
-niveau String,
+categorie String,
 duree Long required
 }
 
-entity Candidat {
-nom String required,
-prenom String required,
-email String required
-}
 
 entity Evaluation {
 debut ZonedDateTime,
@@ -25,9 +20,8 @@ fin ZonedDateTime,
 score Double
 }
 
-
 relationship OneToMany {
-Question {reponse} to Reponse
+	Question {reponse} to Reponse
 }
 
 relationship OneToMany {
@@ -35,12 +29,9 @@ relationship OneToMany {
 }
 
 relationship ManyToOne {
-	Evaluation{questionnaire} to Questionnaire
+	Evaluation {questionnaire} to Questionnaire
 }
-
 
 relationship ManyToOne {
 	Evaluation {candidat} to User
 }
-
-
