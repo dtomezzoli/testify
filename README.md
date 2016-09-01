@@ -91,8 +91,8 @@ To setup this project in Jenkins, use the following configuration:
 ##########  Testify project  ##########
 #######################################
 
-## Add roles CANDIDAT and RECRUTEUR
-Add roles ROLE_CANDIDAT and ROLE_RECRUTEUR, add user "recruteur", and set user's roles:
+## Add role RECRUTEUR
+Add role ROLE_RECRUTEUR, add user "recruteur", and set user's roles:
 	testify/src/main/resources/config/liquibase/autorities.csv
 	src/main/resources/config/liquibase/users_authorities.csv
 	src/main/resources/config/liquibase/users_authorities.csv
