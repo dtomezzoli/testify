@@ -10,10 +10,11 @@
     <include file="classpath:config/liquibase/changelog/20160809140320_added_entity_Question.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140321_added_entity_Questionnaire.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140323_added_entity_Evaluation.xml" relativeToChangelogFile="false"/>
-
-
+    <include file="classpath:config/liquibase/changelog/20160901124826_added_entity_ChoixReponse.xml" relativeToChangelogFile="false"/>
+	
     <include file="classpath:config/liquibase/changelog/20160809140323_added_entity_constraints_Evaluation.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140320_added_entity_constraints_Question.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160809140319_added_entity_constraints_Reponse.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160901124826_added_entity_constraints_ChoixReponse.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

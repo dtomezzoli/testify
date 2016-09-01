@@ -1,0 +1,22 @@
+{
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "relationshipName": "evaluation",
+      "otherEntityName": "evaluation",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "relationshipName": "reponse",
+      "otherEntityName": "reponse",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [],
+  "changelogDate": "20160901124826",
+  "entityTableName": "choix_reponse",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}
