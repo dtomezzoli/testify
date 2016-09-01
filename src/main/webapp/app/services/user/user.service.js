@@ -11,6 +11,8 @@
         var service = $resource('api/users/:login', {}, {
             'query': {method: 'GET', isArray: true},
             'get': {
+	    	isArray: false, // fix bug
+
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);

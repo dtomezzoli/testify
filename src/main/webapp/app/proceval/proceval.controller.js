@@ -4,15 +4,15 @@
         .module("proceval")
         .controller("procevalController", procevalController);
 
-    procevalController.$inject=['$scope','dataFactory','$timeout','$location'];
+    procevalController.$inject=['$scope','$timeout','$location', 'Questionnaire'];
 
 
-    function procevalController($scope,dataFactory,$timeout,$location){
+    function procevalController($scope,$timeout,$location, Questionnaire){
     	
     	console.log ("procevalController");
         var vm =this;
        
-        vm.questionnaires = dataFactory.getQuestionnaires (); 
+        vm.questionnaires = Questionnaire.query ();
         vm.currentPage = 0;
         vm.pageSize = 3;
         
@@ -21,12 +21,8 @@
         	 $timeout(function() {
         		 $location.path('/testmgt/'+questionnaire.id);
         	 });
-        	console.log ("procevalController:choisirQuestionnaire:" + $location.path());
         };     
-   
-        
-        
-        
+          
         
     }
 

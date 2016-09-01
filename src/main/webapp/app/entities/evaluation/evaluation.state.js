@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/evaluation',
             data: {
-                authorities: ['ROLE_ADMIN'],
+                authorities: ['ROLE_RECRUTEUR'],
                 pageTitle: 'Evaluations'
             },
             views: {
@@ -30,7 +30,7 @@
             parent: 'entity',
             url: '/evaluation/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_RECRUTEUR'],
                 pageTitle: 'Evaluation'
             },
             views: {
@@ -58,7 +58,7 @@
             parent: 'evaluation-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_RECRUTEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -83,7 +83,7 @@
             parent: 'evaluation',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_RECRUTEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -113,7 +113,7 @@
             parent: 'evaluation',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_RECRUTEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -138,7 +138,7 @@
             parent: 'evaluation',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_RECRUTEUR']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

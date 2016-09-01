@@ -1,12 +1,14 @@
-<!--  
+
+<!-- 
 <div>
 <pre>
-vm.reponsesCourantes:	
-{{vm.reponsesCourantes | json}} 
+TestEncours :	
+{{vm.testEncours}} 
 </pre>
 </div>
+-->
 
-
+<!--  
 <div>
 <pre>
 vm.scoreParams:	
@@ -15,25 +17,35 @@ vm.scoreParams:
 </div>
 -->
 
+<!--  
+<div>
+<pre>
+vm.evaluation: {{vm.evaluation | json }} 
+</pre>
+</div>
+-->
+
+<!--    
+<div>
+<pre>
+vm.scoreParams: {{vm.scoreParams | json}} 
+vm.score: {{vm.score}} 
++1 : {{vm.score + 1}} 
+</pre>
+</div>
+
+-->
+
+
+
+<div ng-show="vm.testEncours">
+
 <div>
  	<div class="row">
 	<h4> {{vm.questionCourante.enonce}} </h4>
     </div>
 </div>
 
-
-
-<!--
-<div class="row">  
- 	<li ng-repeat="item in vm.propositionsCourantes">
-         <input 
-            type="checkbox" 
-            ng-checked="vm.reponsesCourantes.customIndexOf(item) > -1"
-            ng-click="vm.addOrRemove(vm.reponsesCourantes, item, true)"
-         > {{item.contenu}}
-      </li>
-</div>
--->
 
   <div class="table-responsive">
         <table class="table table-striped">
@@ -53,11 +65,11 @@ vm.scoreParams:
 
     <hr>
 	<div class="text-center">
-	<button ng-disabled="vm.currentPage == 0" ng-click="vm.questionPrecedente()">
+	<button ng-hide="vm.currentPage == 0" ng-click="vm.questionPrecedente()">
 	Question précédente
 	</button>
      {{"Question numéro " + (vm.currentPage+1) + " / " + vm.questions.length}}    
-	<button ng-disabled="vm.currentPage >= vm.questions.length - 1" ng-click="vm.questionSuivante()">
+	<button ng-hide="vm.currentPage >= vm.questions.length - 1" ng-click="vm.questionSuivante()">
 	Question suivante
 	</button>
     </div>
@@ -73,8 +85,19 @@ vm.scoreParams:
     </button>    
     </div>
    
- 
+ </div>
  
   
-
+<div class="text-center" ng-hide="vm.testEncours">
+	
+	<div>
+		<h1> Votre score est  {{ vm.evaluation.score}}. </h1>
+	</div>
+	
+	<h1> Durée du test : {{vm.duration}} minutes</h1>
+	<hr>
+	<button ng-click="vm.acquitterScore()"> Valider
+	</button>
+</div>
+    
     

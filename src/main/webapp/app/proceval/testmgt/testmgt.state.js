@@ -26,11 +26,13 @@
             }
         });
         
+        
+        
         $stateProvider.state('proceval.score', {
-            url: '/testmgt/score/:score/:scoreMax/:duration',
+            url: '/testmgt/score/:duration',
             parent: 'app',       
             data: {
-                authorities: []
+            	authorities: ['ROLE_CANDIDAT']
             },
             views: {
                 'content@': {
