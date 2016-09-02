@@ -96,7 +96,7 @@
                         entity: function () {
                             return {
                                 theme: null,
-                                niveau: null,
+                                categorie: null,
                                 duree: null,
                                 id: null
                             };
