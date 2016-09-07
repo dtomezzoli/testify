@@ -32,7 +32,7 @@
             url: '/testmgt/score/:duration',
             parent: 'app',       
             data: {
-            	authorities: ['ROLE_USER']
+            	authorities: ['ROLE_CANDIDAT']
             },
             views: {
                 'content@': {

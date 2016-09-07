@@ -92,8 +92,27 @@ public class ReponseResource {
         return reponses;
     }
 
-       
-
+    
+    /**
+     * GET  /reponses/question/:id : get all Reponses from "id" Question.
+     *
+     * @param id the id of the question
+     * @return the ResponseEntity with status 200 (OK) and with body the reponses, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/reponses/question/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Reponse> getAllReponsesByQuestionId(@PathVariable Long id) {
+        log.debug("REST request to get Reponse by Question Id : {}", id);
+        
+        List<Reponse> reponses = reponseRepository.findByQuestionId(id);
+        return reponses;
+    }
+    
+  
+    
+    
     
     /**
      * GET  /reponses/:id : get the "id" reponse.

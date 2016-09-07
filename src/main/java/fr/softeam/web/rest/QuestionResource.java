@@ -92,7 +92,22 @@ public class QuestionResource {
         return questions;
     }
     
-   
+    /**
+     * GET  /questions/questionnaire/:id : get all the question from "id" questionnaire.
+     *
+     * @param id the id of the question to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the question, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/questions/questionnaire/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Question> getAllQuestionsByQuestionnaireId(@PathVariable Long id) {
+        log.debug("REST request to get Question by Questionnaire Id : {}", id);
+        
+        List<Question> questions = questionRepository.findByQuestionnaireId(id);
+        return questions;
+    }
 
     /**
      * GET  /questions/:id : get the "id" question.
