@@ -5,9 +5,9 @@
         .module("proceval")
         .controller("testmgtController" , testmgtController);
     
-    testmgtController.$inject=['$scope','$timeout','$location','$stateParams', 'Question', 'Reponse', 'Score', '$http', 'HttpScore', '$q', 'Evaluation', 'Questionnaire', 'Principal', 'User', '$uibModal'];
+    testmgtController.$inject=['$scope','$timeout','$location','$stateParams', 'Question', 'Reponse', 'Score', '$http', '$q', 'Evaluation', 'Questionnaire', 'Principal', 'User', '$uibModal'];
 
-    function testmgtController($scope,$timeout,$location,$stateParams, Question, Reponse, Score, $http, HttpScore, $q, Evaluation, Questionnaire, Principal, User, $uibModal){
+    function testmgtController($scope,$timeout,$location,$stateParams, Question, Reponse, Score, $http, $q, Evaluation, Questionnaire, Principal, User, $uibModal){
     	
     	console.log ("testmgtController:" + $stateParams.qid);
         
