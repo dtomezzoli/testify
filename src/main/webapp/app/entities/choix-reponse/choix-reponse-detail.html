@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span>Choix Reponse</span> {{vm.choixReponse.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Evaluation</span></dt>
+        <dd>
+            <a ui-sref="evaluation-detail({id:vm.choixReponse.evaluation.id})">{{vm.choixReponse.evaluation.id}}</a>
+        </dd>
+        <dt><span>Reponse</span></dt>
+        <dd>
+            <a ui-sref="reponse-detail({id:vm.choixReponse.reponse.id})">{{vm.choixReponse.reponse.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="choix-reponse-detail.edit({id:vm.choixReponse.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

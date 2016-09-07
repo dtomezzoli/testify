@@ -20,6 +20,9 @@ fin ZonedDateTime,
 score Double
 }
 
+entity ChoixReponse {
+}
+
 relationship OneToMany {
 	Question {reponse} to Reponse
 }
@@ -30,6 +33,14 @@ relationship OneToMany {
 
 relationship ManyToOne {
 	Evaluation {questionnaire} to Questionnaire
+}
+
+relationship ManyToOne {
+	ChoixReponse{evaluation} to Evaluation
+}
+
+relationship ManyToOne {
+	ChoixReponse{reponse} to Reponse
 }
 
 relationship ManyToOne {
