@@ -25,7 +25,7 @@
                 <constraints nullable="false" />
             </column>
             
-            <column name="niveau" type="varchar(255)">
+            <column name="categorie" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

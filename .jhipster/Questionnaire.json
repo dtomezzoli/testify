@@ -19,7 +19,7 @@
     },
     {
       "fieldId": 2,
-      "fieldName": "niveau",
+      "fieldName": "categorie",
       "fieldType": "String"
     },
     {
