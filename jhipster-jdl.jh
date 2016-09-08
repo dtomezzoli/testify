@@ -1,23 +1,23 @@
 entity Reponse {
-contenu String required,
-score Double 
+	contenu String required,
+	score Double 
 }
 
 entity Question {
-enonce String required
+	enonce String required
 }
 
 entity Questionnaire {
-theme String required,
-categorie String,
-duree Long required
+	theme String required,
+	categorie String,
+	duree Long required
 }
 
 
 entity Evaluation {
-debut ZonedDateTime,
-fin ZonedDateTime,
-score Double
+	debut ZonedDateTime,
+	fin ZonedDateTime,
+	score Double
 }
 
 relationship OneToMany {
@@ -34,4 +34,8 @@ relationship ManyToOne {
 
 relationship ManyToOne {
 	Evaluation {candidat} to User
+}
+
+relationship ManyToMany {
+	Evaluation {reponse} to Reponse {evaluation}
 }

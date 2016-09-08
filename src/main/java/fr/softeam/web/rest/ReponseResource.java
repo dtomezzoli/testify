@@ -92,9 +92,6 @@ public class ReponseResource {
         return reponses;
     }
 
-       
-
-    
     /**
      * GET  /reponses/:id : get the "id" reponse.
      *

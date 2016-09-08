@@ -1,11 +1,14 @@
 package fr.softeam.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -28,6 +31,11 @@ public class Reponse implements Serializable {
 
     @Column(name = "score")
     private Double score;
+
+    @ManyToMany(mappedBy = "reponses")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Evaluation> evaluations = new HashSet<>();
 
     @ManyToOne
     private Question question;
@@ -54,6 +62,14 @@ public class Reponse implements Serializable {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    public Set<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(Set<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
     public Question getQuestion() {

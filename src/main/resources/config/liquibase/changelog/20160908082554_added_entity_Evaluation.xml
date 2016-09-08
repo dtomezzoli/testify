@@ -16,7 +16,7 @@
     <!--
         Added the entity Evaluation.
     -->
-    <changeSet id="20160809140323-1" author="jhipster">
+    <changeSet id="20160908082554-1" author="jhipster">
         <createTable tableName="evaluation">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -33,11 +33,11 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="candidat_id" type="bigint">
+            <column name="questionnaire_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="questionnaire_id" type="bigint">
+            <column name="candidat_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
@@ -45,6 +45,17 @@
         </createTable>
         <dropDefaultValue tableName="evaluation" columnName="debut" columnDataType="datetime"/>
         <dropDefaultValue tableName="evaluation" columnName="fin" columnDataType="datetime"/>
+        
+        <createTable tableName="evaluation_reponse">
+            <column name="reponses_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="evaluations_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="evaluations_id, reponses_id" tableName="evaluation_reponse"/>
         
     </changeSet>
 </databaseChangeLog>

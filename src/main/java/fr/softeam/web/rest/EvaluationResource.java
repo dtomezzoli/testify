@@ -87,7 +87,7 @@ public class EvaluationResource {
     @Timed
     public List<Evaluation> getAllEvaluations() {
         log.debug("REST request to get all Evaluations");
-        List<Evaluation> evaluations = evaluationRepository.findAll();
+        List<Evaluation> evaluations = evaluationRepository.findAllWithEagerRelationships();
         return evaluations;
     }
 
@@ -103,7 +103,7 @@ public class EvaluationResource {
     @Timed
     public ResponseEntity<Evaluation> getEvaluation(@PathVariable Long id) {
         log.debug("REST request to get Evaluation : {}", id);
-        Evaluation evaluation = evaluationRepository.findOne(id);
+        Evaluation evaluation = evaluationRepository.findOneWithEagerRelationships(id);
         return Optional.ofNullable(evaluation)
             .map(result -> new ResponseEntity<>(
                 result,

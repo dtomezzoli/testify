@@ -1,6 +1,5 @@
 package fr.softeam.repository;
 
-import fr.softeam.domain.Question;
 import fr.softeam.domain.Reponse;
 
 import org.springframework.data.jpa.repository.*;

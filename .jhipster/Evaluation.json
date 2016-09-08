@@ -1,38 +1,42 @@
 {
-    "relationships": [
-        {
-            "relationshipName": "candidat",
-            "otherEntityName": "user",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "login"
-        },
-        {
-            "relationshipName": "questionnaire",
-            "otherEntityName": "questionnaire",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        }
-    ],
-    "fields": [
-        {
-            "fieldId": 1,
-            "fieldName": "debut",
-            "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldId": 2,
-            "fieldName": "fin",
-            "fieldType": "ZonedDateTime"
-        },
-        {
-            "fieldId": 3,
-            "fieldName": "score",
-            "fieldType": "Double"
-        }
-    ],
-    "changelogDate": "20160809140323",
-    "dto": "no",
-    "service": "no",
-    "entityTableName": "evaluation",
-    "pagination": "no"
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "relationshipName": "questionnaire",
+      "otherEntityName": "questionnaire",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "relationshipName": "candidat",
+      "otherEntityName": "user",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "relationshipName": "reponse",
+      "otherEntityName": "reponse",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "debut",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "fin",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "Double"
+    }
+  ],
+  "changelogDate": "20160908082554",
+  "entityTableName": "evaluation",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
 }

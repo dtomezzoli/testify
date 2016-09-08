@@ -5,9 +5,9 @@
         .module('testifyApp')
         .controller('EvaluationDialogController', EvaluationDialogController);
 
-    EvaluationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Evaluation', 'User', 'Questionnaire'];
+    EvaluationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Evaluation', 'User', 'Questionnaire', 'Reponse'];
 
-    function EvaluationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Evaluation, User, Questionnaire) {
+    function EvaluationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Evaluation, User, Questionnaire, Reponse) {
         var vm = this;
 
         vm.evaluation = entity;
@@ -17,6 +17,7 @@
         vm.save = save;
         vm.users = User.query();
         vm.questionnaires = Questionnaire.query();
+        vm.reponses = Reponse.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -32,10 +34,17 @@ public class Evaluation implements Serializable {
     private Double score;
 
     @ManyToOne
-    private User candidat;
+    private Questionnaire questionnaire;
 
     @ManyToOne
-    private Questionnaire questionnaire;
+    private User candidat;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "evaluation_reponse",
+               joinColumns = @JoinColumn(name="evaluations_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="reponses_id", referencedColumnName="ID"))
+    private Set<Reponse> reponses = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -69,6 +78,14 @@ public class Evaluation implements Serializable {
         this.score = score;
     }
 
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
     public User getCandidat() {
         return candidat;
     }
@@ -77,12 +94,12 @@ public class Evaluation implements Serializable {
         this.candidat = user;
     }
 
-    public Questionnaire getQuestionnaire() {
-        return questionnaire;
+    public Set<Reponse> getReponses() {
+        return reponses;
     }
 
-    public void setQuestionnaire(Questionnaire questionnaire) {
-        this.questionnaire = questionnaire;
+    public void setReponses(Set<Reponse> reponses) {
+        this.reponses = reponses;
     }
 
     @Override

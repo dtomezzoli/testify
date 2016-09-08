@@ -24,6 +24,12 @@
         <dd>
             <a ui-sref="questionnaire-detail({id:vm.evaluation.questionnaire.id})">{{vm.evaluation.questionnaire.id}}</a>
         </dd>
+        <dt><span>Reponse</span></dt>
+        <dd>
+            <span ng-repeat="reponse in vm.evaluation.reponses">
+                <a ui-sref="reponse-detail({id: reponse.id})">{{reponse.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

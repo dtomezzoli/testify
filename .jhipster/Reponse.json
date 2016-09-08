@@ -1,7 +1,13 @@
 {
   "relationships": [
     {
-      "relationshipId": 1,
+      "relationshipType": "many-to-many",
+      "relationshipName": "evaluation",
+      "otherEntityName": "evaluation",
+      "ownerSide": false,
+      "otherEntityRelationshipName": "reponse"
+    },
+    {
       "relationshipName": "question",
       "otherEntityName": "question",
       "relationshipType": "many-to-one",
@@ -10,7 +16,6 @@
   ],
   "fields": [
     {
-      "fieldId": 1,
       "fieldName": "contenu",
       "fieldType": "String",
       "fieldValidateRules": [
@@ -18,14 +23,13 @@
       ]
     },
     {
-      "fieldId": 2,
       "fieldName": "score",
       "fieldType": "Double"
     }
   ],
-  "changelogDate": "20160809140319",
+  "changelogDate": "20160908082551",
+  "entityTableName": "reponse",
   "dto": "no",
   "pagination": "no",
-  "service": "no",
-  "entityTableName": "reponse"
+  "service": "no"
 }

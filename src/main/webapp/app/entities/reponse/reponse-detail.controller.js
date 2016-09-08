@@ -5,9 +5,9 @@
         .module('testifyApp')
         .controller('ReponseDetailController', ReponseDetailController);
 
-    ReponseDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Reponse', 'Question'];
+    ReponseDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Reponse', 'Evaluation', 'Question'];
 
-    function ReponseDetailController($scope, $rootScope, $stateParams, previousState, entity, Reponse, Question) {
+    function ReponseDetailController($scope, $rootScope, $stateParams, previousState, entity, Reponse, Evaluation, Question) {
         var vm = this;
 
         vm.reponse = entity;

@@ -5,14 +5,15 @@
         .module('testifyApp')
         .controller('ReponseDialogController', ReponseDialogController);
 
-    ReponseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Reponse', 'Question'];
+    ReponseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Reponse', 'Evaluation', 'Question'];
 
-    function ReponseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Reponse, Question) {
+    function ReponseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Reponse, Evaluation, Question) {
         var vm = this;
 
         vm.reponse = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.evaluations = Evaluation.query();
         vm.questions = Question.query();
 
         $timeout(function (){
